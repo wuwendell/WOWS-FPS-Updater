@@ -1,0 +1,6 @@
+ # IDE Stuff
+.idea
+*.iml
+
+ # Output (you can use your own compiler!)
+out
