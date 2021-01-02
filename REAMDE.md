@@ -2,7 +2,11 @@
 
 Because the game World of Warships updates frequently, any FPS modifications made to the client are overridden often.
 
-I don't want to keep doing this manually every update, so I've designed a 
+I don't want to keep doing this manually every update, so I've designed a python script 
+that I will schedule to run with Windows Task Scheduler every day or so (time interval TBD).
+
+This is also a personal exercise in writing python, so not everything will be perfect.
+I am still learning the ropes with this highly abstract language.
 
 
 #### TODO
