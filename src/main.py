@@ -1,4 +1,4 @@
-import sys
+import os
 
 # steps for the FPS checking algorithm
 
@@ -12,14 +12,25 @@ import sys
 # edit the value inside the tag to be 150 or another value the user can supply later
 # save the file and close everything down
 
-# TODO: figure out file reading and writing standard library for python
-# TODO: figure out the types used for file i/o
-# TODO: figure out convention of doing file i/o for plaintext (read in, edit, write out?)
 # TODO: add to README.md
 
-someVar = 1
-text = "Some string #blahblahblahblah"
+tagNameConstant = "<maxFrameRate>"
+tagNameCloseConstant = "</maxFrameRate>"
 
-print('text')
-print(text)
-print(someVar)
+# only run the logic in the script if this was called as an argument using interpreter
+if __name__ == "__main__":
+    # find the latest file based on numbering system
+    os.chdir(r"C:\Games\World_of_Warships_NA\bin")
+    dirName = max(os.listdir())
+    engineConfigFileName = 'C:\\Games\\World_of_Warships_NA\\bin\\' + dirName + r"\res_mods\engine_config.xml"
+    print("Now opening file:", engineConfigFileName)
+    with open(engineConfigFileName, 'r+') as f:
+        contents = f.read()
+        indexOfFrameRateTag = contents.index(tagNameConstant)
+        indexOfFrameRateTag += len(tagNameConstant)
+        indexOfFrameTagClose = contents.index(tagNameCloseConstant)
+        final = contents[:indexOfFrameRateTag] + '175' + contents[indexOfFrameTagClose:]
+        f.seek(0)
+        f.write(final)
+        f.truncate()
+        print("successfully wrote to file")
